@@ -11,23 +11,17 @@ export default function BottomMenu() {
     <footer id="bottom-menu" data-testid="footer">
       <Button
         test="drinks-bottom"
-        text={
-          <img src={ drinkIcon } alt="drinks-bottom" />
-        }
+        src={ drinkIcon }
         onClick={ () => history.push('/drinks') }
       />
       <Button
         test="explore-bottom"
-        text={
-          <img src={ exploreIcon } alt="explore-bottom" />
-        }
+        src={ exploreIcon }
         onClick={ () => history.push('/explore') }
       />
       <Button
         test="food-bottom"
-        text={
-          <img src={ mealIcon } alt="food-bottom" />
-        }
+        src={ mealIcon }
         onClick={ () => history.push('/foods') }
       />
     </footer>);
