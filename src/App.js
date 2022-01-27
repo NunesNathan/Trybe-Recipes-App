@@ -24,12 +24,14 @@ function App() {
         exact
       >
         <Foods />
+        <BottomMenu />
       </Route>
       <Route
         path="/drinks"
         exact
       >
         <Drinks />
+        <BottomMenu />
       </Route>
       <Route
         path="/foods/{id-da-receita}"
@@ -51,6 +53,7 @@ function App() {
         exact
       >
         <Explorer />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/foods"
