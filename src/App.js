@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import './styles/App.css';
+import './styles/BottomMenu.css';
+import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Foods from './pages/Foods';

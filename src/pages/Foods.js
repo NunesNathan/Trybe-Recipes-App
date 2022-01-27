@@ -1,5 +1,6 @@
 import React from 'react';
+import BottomMenu from '../components/BottomMenu';
 
 export default function Foods() {
-  return <main>Papá</main>;
+  return <main><BottomMenu /></main>;
 }
