@@ -6,6 +6,9 @@ import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Foods from './pages/Foods';
+import Drinks from './pages/Drinks';
+import Explorer from './pages/Explorer';
+import BottomMenu from './components/BottomMenu';
 
 function App() {
   const routes = () => (
@@ -25,7 +28,9 @@ function App() {
       <Route
         path="/drinks"
         exact
-      />
+      >
+        <Drinks />
+      </Route>
       <Route
         path="/foods/{id-da-receita}"
       />
@@ -44,31 +49,45 @@ function App() {
       <Route
         path="/explore"
         exact
-      />
+      >
+        <Explorer />
+      </Route>
       <Route
         path="/explore/foods"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/explore/drinks"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/explore/foods/ingredients"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/explore/drinks/ingredients"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/explore/foods/nationalities"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/profile"
         exact
-      />
+      >
+        <BottomMenu />
+      </Route>
       <Route
         path="/done-recipes"
         exact
