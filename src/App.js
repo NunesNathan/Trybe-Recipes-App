@@ -1,9 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './pages/Home';
 import Foods from './pages/Foods';
+import Home from './pages/Home';
 
 function App() {
   const routes = () => (

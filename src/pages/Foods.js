@@ -1,5 +1,10 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function Foods() {
-  return <main>Papá</main>;
+  return (
+    <main>
+      <Header />
+    </main>
+  );
 }
