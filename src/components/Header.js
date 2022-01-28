@@ -1,23 +1,17 @@
 import PropType from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Button from './Button';
-
-const style = {
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-around',
-  alignItems: 'center',
-
-};
+import SearchBar from './SearchBar';
 
 export default function Header({ title, search }) {
   const history = useHistory();
+  const [searchBar, setSearchbar] = useState(false);
 
   return (
-    <div style={ style }>
+    <header>
       <Button
         src={ profileIcon }
         test="profile-top-btn"
@@ -29,9 +23,14 @@ export default function Header({ title, search }) {
         && <Button
           src={ searchIcon }
           test="search-top-btn"
+          onClick={ () => setSearchbar(() => !searchBar) }
         /> }
 
-    </div>);
+      {searchBar
+        && <SearchBar /> }
+
+    </header>
+  );
 }
 
 Header.propTypes = {
