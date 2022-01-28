@@ -1,3 +1,4 @@
+import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
@@ -12,7 +13,7 @@ const style = {
 
 };
 
-export default function Header() {
+export default function Header({ title, search }) {
   const history = useHistory();
 
   return (
@@ -22,10 +23,18 @@ export default function Header() {
         test="profile-top-btn"
         onClick={ () => history.push('/profile') }
       />
-      <h3 data-testid="page-title">Food</h3>
-      <Button
-        src={ searchIcon }
-        test="search-top-btn"
-      />
+      <h3 data-testid="page-title">{ title }</h3>
+
+      {search
+        && <Button
+          src={ searchIcon }
+          test="search-top-btn"
+        /> }
+
     </div>);
 }
+
+Header.propTypes = {
+  title: PropType.string.isRequired,
+  search: PropType.bool.isRequired,
+};
