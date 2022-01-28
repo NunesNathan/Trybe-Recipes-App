@@ -1,5 +1,11 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function Drinks() {
-  return <main>bebiricar</main>;
+  return (
+    <main>
+      <Header title="Drinks" search />
+    </main>
+  );
+
 }

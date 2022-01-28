@@ -1,5 +1,10 @@
 import React from 'react';
+import Header from '../components/Header';
 
 export default function ExploreDrinks() {
-  return <main>explorar e bebiricar</main>;
+  return (
+    <main>
+      <Header title="Explore Drinks" search={ false } />
+    </main>
+  );
 }

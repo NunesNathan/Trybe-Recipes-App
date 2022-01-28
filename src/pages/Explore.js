@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../components/Header';
 
-export default function ExploreFoods() {
+export default function Explore() {
   return (
     <main>
-      <Header title="Explore Foods" search={ false } />
+      <Header title="Explorer" search={ false } />
     </main>
   );
 }
