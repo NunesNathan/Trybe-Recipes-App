@@ -4,7 +4,7 @@ import './styles/App.css';
 import './styles/BottomMenu.css';
 import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Home from './pages/Home';
+import Login from './pages/Login';
 import Foods from './pages/Foods';
 import Drinks from './pages/Drinks';
 import Explorer from './pages/Explorer';
@@ -17,7 +17,7 @@ function App() {
         path="/"
         exact
       >
-        <Home />
+        <Login />
       </Route>
       <Route
         path="/foods"
