@@ -18,6 +18,8 @@ import './styles/BottomMenu.css';
 import './styles/index.css';
 import Login from './pages/Login';
 import BottomMenu from './components/BottomMenu';
+import FoodRecipes from './pages/FoodRecipes';
+import DrinksRecipes from './pages/DrinksRecipes';
 
 function App() {
   const routes = () => (
@@ -37,17 +39,22 @@ function App() {
       </Route>
       <Route
         exact
+        path="/drinks"
       >
         <Drinks />
         <BottomMenu />
       </Route>
       <Route
         path="/foods/{id-da-receita}"
-      />
+      >
+        <FoodRecipes />
+      </Route>
       <Route
         exact
         path="/drinks/{id-da-receita}"
-      />
+      >
+        <DrinksRecipes />
+      </Route>
       <Route
         exact
         path="/foods/{id-da-receita}/in-progress"

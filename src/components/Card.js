@@ -6,7 +6,11 @@ const Card = (props) => {
 
   return (
     <div data-testid={ `${index}-recipe-card` }>
-      <img src={ item[keyURLImage] } alt={ item[keyName] } />
+      <img
+        data-testid={ `${index}-card-img` }
+        src={ item[keyURLImage] }
+        alt={ item[keyName] }
+      />
       <h3 data-testid={ `${index}-card-name` }>{ item[keyName] }</h3>
     </div>
   );
