@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import Header from '../components/Header';
 import ListCards from '../components/ListCards';
-import SearchBar from '../components/SearchBar';
 import recipesContext from '../context/recipesContext';
 
 export default function Foods() {
@@ -9,7 +9,7 @@ export default function Foods() {
 
   return (
     <div>
-      <SearchBar />
+      <Header title="Foods" search />
       <main>
         { foods !== null ? (
           foods.length === 1 && <Redirect to={ `/foods/${foods[0].idMeal}` } />

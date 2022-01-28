@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import Header from '../components/Header';
 import ListCards from '../components/ListCards';
-import SearchBar from '../components/SearchBar';
 import recipesContext from '../context/recipesContext';
 
 const Drinks = () => {
@@ -9,7 +9,7 @@ const Drinks = () => {
 
   return (
     <div>
-      <SearchBar />
+      <Header title="Drinks" search />
       <main>
         {
           drinks !== null ? (
