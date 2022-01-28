@@ -45,7 +45,7 @@ const SearchBar = () => {
       result = searchMealByName(search);
       break;
     case FIRSTLETTER:
-      result = (result.length > 1) ? searchMealByFirstLetter(search) : global
+      result = (search.length === 1) ? searchMealByFirstLetter(search) : global
         .alert('Your search must have only 1 (one) character');
       break;
     default:
@@ -67,7 +67,7 @@ const SearchBar = () => {
       result = searchCocktailByName(search);
       break;
     case FIRSTLETTER:
-      result = (result.length > 1) ? searchCocktailByFirstLetter(search) : global
+      result = (search.length === 1) ? searchCocktailByFirstLetter(search) : global
         .alert('Your search must have only 1 (one) character');
       break;
     default:
