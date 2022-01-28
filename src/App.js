@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
 import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
 import Explore from './pages/Explore';
@@ -14,6 +13,11 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Foods from './pages/Foods';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import './styles/App.css';
+import './styles/BottomMenu.css';
+import './styles/index.css';
+import Login from './pages/Login';
+import BottomMenu from './components/BottomMenu';
 
 function App() {
   const routes = () => (
@@ -22,19 +26,21 @@ function App() {
         path="/"
         exact
       >
-        <Home />
+        <Login />
       </Route>
       <Route
         path="/foods"
         exact
       >
         <Foods />
+        <BottomMenu />
       </Route>
       <Route
         path="/drinks"
         exact
       >
         <Drinks />
+        <BottomMenu />
       </Route>
       <Route
         path="/foods/{id-da-receita}"
@@ -56,42 +62,49 @@ function App() {
         exact
       >
         <Explore />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/foods"
         exact
       >
         <ExploreFoods />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/drinks"
         exact
       >
         <ExploreDrinks />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/foods/ingredients"
         exact
       >
         <ExploreFoodsIngredients />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/drinks/ingredients"
         exact
       >
         <ExploreDrinksIngredients />
+        <BottomMenu />
       </Route>
       <Route
         path="/explore/foods/nationalities"
         exact
       >
         <ExploreNationalities />
+        <BottomMenu />
       </Route>
       <Route
         path="/profile"
         exact
       >
         <Profile />
+        <BottomMenu />
       </Route>
       <Route
         path="/done-recipes"

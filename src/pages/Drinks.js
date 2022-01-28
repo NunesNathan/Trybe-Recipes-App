@@ -7,4 +7,5 @@ export default function Drinks() {
       <Header title="Drinks" search />
     </main>
   );
+
 }

@@ -22,9 +22,6 @@ class Button extends React.Component {
 Button.propTypes = {
   text: PropType.string.isRequired,
   test: PropType.string.isRequired,
-  style: PropType.shape({
-    border: PropType.string,
-  }),
   disabled: PropType.bool,
   onClick: PropType.func.isRequired,
   src: PropType.string,
