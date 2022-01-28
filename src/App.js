@@ -4,85 +4,89 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
 import Foods from './pages/Foods';
+import Provider from './context/Provider';
+import Drinks from './pages/Drinks';
 
 function App() {
   const routes = () => (
     <Switch>
       <Route
-        path="/"
         exact
+        path="/"
       >
         <Home />
       </Route>
       <Route
-        path="/foods"
         exact
+        path="/foods"
       >
         <Foods />
       </Route>
       <Route
-        path="/drinks"
         exact
-      />
+        path="/drinks"
+      >
+        <Drinks />
+      </Route>
       <Route
         path="/foods/{id-da-receita}"
       />
       <Route
+        exact
         path="/drinks/{id-da-receita}"
-        exact
       />
       <Route
+        exact
         path="/foods/{id-da-receita}/in-progress"
-        exact
       />
       <Route
+        exact
         path="/drinks/{id-da-receita}/in-progress"
-        exact
       />
       <Route
+        exact
         path="/explore"
-        exact
       />
       <Route
+        exact
         path="/explore/foods"
-        exact
       />
       <Route
+        exact
         path="/explore/drinks"
-        exact
       />
       <Route
+        exact
         path="/explore/foods/ingredients"
-        exact
       />
       <Route
+        exact
         path="/explore/drinks/ingredients"
-        exact
       />
       <Route
+        exact
         path="/explore/foods/nationalities"
-        exact
       />
       <Route
+        exact
         path="/profile"
-        exact
       />
       <Route
+        exact
         path="/done-recipes"
-        exact
       />
       <Route
-        path="/favorite-recipes"
         exact
+        path="/favorite-recipes"
       />
     </Switch>
   );
   return (
-    <>
+    <Provider>
       {
         routes()
       }
-    </>);
+    </Provider>);
 }
 
 export default App;
