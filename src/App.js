@@ -20,6 +20,8 @@ import Login from './pages/Login';
 import BottomMenu from './components/BottomMenu';
 import FoodRecipes from './pages/FoodRecipes';
 import DrinksRecipes from './pages/DrinksRecipes';
+import RecipesInProgress from './pages/RecipesInProgress';
+import NotFound from './pages/NotFound';
 
 function App() {
   const routes = () => (
@@ -45,24 +47,36 @@ function App() {
         <BottomMenu />
       </Route>
       <Route
-        path="/foods/{id-da-receita}"
+        // path="/foods/{id-da-receita}"
+        exact
+        path="/foods/:id"
+
       >
         <FoodRecipes />
       </Route>
+
       <Route
         exact
-        path="/drinks/{id-da-receita}"
+        // path="/drinks/{id-da-receita}"
+        path="/drinks/:id"
       >
         <DrinksRecipes />
       </Route>
       <Route
         exact
-        path="/foods/{id-da-receita}/in-progress"
-      />
+        path="/foods/:id/in-progress"
+        // path="/foods/{id-da-receita}/in-progress"
+      >
+        <RecipesInProgress />
+      </Route>
+
       <Route
         exact
-        path="/drinks/{id-da-receita}/in-progress"
-      />
+        // path="/drinks/{id-da-receita}/in-progress"
+        path="/drinks/:id/in-progress"
+      >
+        <RecipesInProgress />
+      </Route>
       <Route
         exact
         path="/explore"
@@ -123,6 +137,12 @@ function App() {
         path="/favorite-recipes"
       >
         <FavoriteRecipes />
+      </Route>
+      <Route
+        exact
+        path="*"
+      >
+        <NotFound />
       </Route>
     </Switch>
   );

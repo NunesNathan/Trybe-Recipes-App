@@ -1,19 +1,18 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import Header from '../components/Header';
 import ListCards from '../components/ListCards';
 import recipesContext from '../context/recipesContext';
 
 export default function Foods() {
   const { foods } = useContext(recipesContext);
-  const history = useHistory();
 
   return (
     <div>
       <Header title="Foods" search />
       <main>
         { foods !== null ? (
-          foods.length === 1 && history.push(`/foods/${foods[0].idMeal}`)
+          foods.length === 1 && <Redirect to={ `/foods/${foods[0].idMeal}` } />
         ) : global.alert('Sorry, we haven\'t found any recipes for these filters.')}
 
         {
