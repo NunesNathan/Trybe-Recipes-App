@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import RecipeIngredientsItem from './RecipeIngredientsItem';
 
 const RecipeIngredients = ({ recipe }) => {
   console.log(recipe);
@@ -10,7 +11,7 @@ const RecipeIngredients = ({ recipe }) => {
         .filter((items) => items[0].includes('strIngredient'))
         .filter((items) => items[1])
         .map((element, index) => (
-          <li key={ index } data-testid={ `${index}-ingredient-step` }>{element[1]}</li>
+          <RecipeIngredientsItem key={ index } item={ element[1] } index={ index } />
         ))}
     </ul>
   );
