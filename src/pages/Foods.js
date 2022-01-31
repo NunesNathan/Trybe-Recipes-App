@@ -8,7 +8,7 @@ export default function Foods() {
   const { foods } = useContext(recipesContext);
 
   return (
-    <div>
+    <>
       <Header title="Foods" search />
       <main>
         { foods !== null ? (
@@ -26,6 +26,6 @@ export default function Foods() {
           ) : null
         }
       </main>
-    </div>
+    </>
   );
 }

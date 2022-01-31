@@ -11,6 +11,7 @@ import {
   searchCocktailByIngredient,
   searchCocktailByName,
 } from '../server/apiCocktail';
+import Button from './Button';
 
 const INGREDIENT = 'ingredient';
 const NAME = 'name';
@@ -86,65 +87,74 @@ const SearchBar = () => {
       setFoods(retornoFoods);
     } else if (pathname === '/drinks') {
       const retornoDrinks = await searchAPICocktail();
-
       setDrinks(retornoDrinks);
     }
   };
 
   return (
-    <form>
+    <form className="form-group d-flex flex-column">
       <input
         type="text"
         name="search"
+        className="form-control"
         value={ search }
         placeholder="Digite sua busca"
         onChange={ handleForm }
         data-testid="search-input"
       />
-
-      <label htmlFor={ INGREDIENT }>
-        Ingrendiente:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ INGREDIENT }
-          checked={ rbSearch === INGREDIENT }
-          onChange={ handleForm }
-          data-testid="ingredient-search-radio"
-        />
-      </label>
-
-      <label htmlFor={ NAME }>
-        Nome:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ NAME }
-          checked={ rbSearch === NAME }
-          onChange={ handleForm }
-          data-testid="name-search-radio"
-        />
-      </label>
-
-      <label htmlFor={ FIRSTLETTER }>
-        Primeira letra:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ FIRSTLETTER }
-          checked={ rbSearch === FIRSTLETTER }
-          onChange={ handleForm }
-          data-testid="first-letter-search-radio"
-        />
-      </label>
-
-      <button
-        type="button"
-        data-testid="exec-search-btn"
-        onClick={ selectLocation }
+      <div
+        className="align-self-center form-check
+        d-flex flex-row justify-content-around"
       >
-        Search
-      </button>
+        <label className="form-check-label" htmlFor={ INGREDIENT }>
+          Ingrendiente:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ INGREDIENT }
+            value={ INGREDIENT }
+            className="form-check-input"
+            checked={ rbSearch === INGREDIENT }
+            onChange={ handleForm }
+            data-testid="ingredient-search-radio"
+          />
+        </label>
+
+        <label className="form-check-label" htmlFor={ NAME }>
+          Nome:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ NAME }
+            value={ NAME }
+            className="form-check-input"
+            checked={ rbSearch === NAME }
+            onChange={ handleForm }
+            data-testid="name-search-radio"
+          />
+        </label>
+
+        <label className="form-check-label" htmlFor={ FIRSTLETTER }>
+          Primeira letra:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ FIRSTLETTER }
+            value={ FIRSTLETTER }
+            className="form-check-input"
+            checked={ rbSearch === FIRSTLETTER }
+            onChange={ handleForm }
+            data-testid="first-letter-search-radio"
+          />
+        </label>
+      </div>
+
+      <Button
+        text="Search"
+        className="submit"
+        test="exec-search-btn"
+        onClick={ selectLocation }
+      />
     </form>
   );
 };

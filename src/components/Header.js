@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
-import Button from './Button';
+import ImageButton from './ImageButton';
 import SearchBar from './SearchBar';
 
 export default function Header({ title, search }) {
@@ -11,19 +11,26 @@ export default function Header({ title, search }) {
   const [searchBar, setSearchbar] = useState(false);
 
   return (
-    <header>
-      <Button
+    <header className="d-flex flex-column">
+      <p
+        data-testid="page-title"
+        className="display-4"
+      >
+        {title}
+      </p>
+
+      <ImageButton
         src={ profileIcon }
         test="profile-top-btn"
         onClick={ () => history.push('/profile') }
       />
-      <h3 data-testid="page-title">{ title }</h3>
 
       {search
-        && <Button
+        && <ImageButton
           src={ searchIcon }
+          alt="shareIcon"
           test="search-top-btn"
-          onClick={ () => setSearchbar(() => !searchBar) }
+          onClick={ () => setSearchbar(!searchBar) }
         /> }
 
       {searchBar
