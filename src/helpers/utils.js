@@ -1,12 +1,23 @@
 export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'));
+export const getFavoriteRecipes = () => JSON.parse(localStorage
+  .getItem('favoriteRecipes'));
 
-export const filterDoneRecipes = (filterType) => {
-  const doneRecipes = getDoneRecipes();
-  if (doneRecipes) {
+export const filterRecipes = (get, filterType) => {
+  const recipes = get === 'done' ? getDoneRecipes() : getFavoriteRecipes();
+  if (recipes) {
     if (filterType === 'all') {
-      return doneRecipes;
+      return recipes;
     }
-    return doneRecipes.filter(({ type }) => type === filterType);
+    return recipes.filter(({ type }) => type === filterType);
   }
   return [];
+};
+
+const toaster = 3000;
+export const showToast = () => {
+  setToast(true);
+  const me = setTimeout(() => {
+    setToast(false);
+    clearTimeout(me);
+  }, toaster);
 };

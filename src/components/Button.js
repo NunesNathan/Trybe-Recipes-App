@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 class Button extends React.Component {
   render() {
     const { text, test, onClick, disabled, className } = this.props;
-    console.log(className);
     return (
       <button
         data-testid={ `${test}` }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import Header from '../components/Header';
-import { getDoneRecipes, filterDoneRecipes } from '../helpers/utils';
+import { getDoneRecipes, filterRecipes, showToast } from '../helpers/utils';
 import FoodCard from '../components/FoodCard';
 import DrinksCard from '../components/DrinksCard';
 import LinkCopiedToast from '../components/LinkCopiedToast';
@@ -9,15 +9,6 @@ import LinkCopiedToast from '../components/LinkCopiedToast';
 export default function DoneRecipes() {
   const [doneList, setDoneList] = useState(getDoneRecipes());
   const [toast, setToast] = useState(false);
-  const toaster = 3000;
-
-  const showToast = () => {
-    setToast(true);
-    const me = setTimeout(() => {
-      setToast(false);
-      clearTimeout(me);
-    }, toaster);
-  };
 
   return (
     <>
@@ -27,17 +18,17 @@ export default function DoneRecipes() {
           <Button
             test="filter-by-all-btn"
             text="All"
-            onClick={ () => setDoneList(filterDoneRecipes('all')) }
+            onClick={ () => setDoneList(filterRecipes('done', 'all')) }
           />
           <Button
             test="filter-by-food-btn"
             text="Food"
-            onClick={ () => setDoneList(filterDoneRecipes('food')) }
+            onClick={ () => setDoneList(filterRecipes('done', 'food')) }
           />
           <Button
             test="filter-by-drink-btn"
             text="Drinks"
-            onClick={ () => setDoneList(filterDoneRecipes('drink')) }
+            onClick={ () => setDoneList(filterRecipes('done', 'drink')) }
           />
         </div>
         {doneList && doneList.length > 0 && (
@@ -49,7 +40,7 @@ export default function DoneRecipes() {
                     key={ i }
                     index={ i }
                     recipe={ eachDoneRecipe }
-                    showToast={ showToast }
+                    showToast={ () => showToast(setToast) }
                   />);
               }
               return (
@@ -57,7 +48,7 @@ export default function DoneRecipes() {
                   key={ i }
                   index={ i }
                   recipe={ eachDoneRecipe }
-                  showToast={ showToast }
+                  showToast={ () => showToast(setToast) }
                 />);
             })}
           </ul>)}
