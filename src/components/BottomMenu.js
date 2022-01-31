@@ -1,28 +1,38 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
-import Button from './Button';
 
 export default function BottomMenu() {
-  const history = useHistory();
   return (
     <footer id="bottom-menu" data-testid="footer">
-      <Button
-        test="drinks-bottom-btn"
-        src={ drinkIcon }
-        onClick={ () => history.push('/drinks') }
-      />
-      <Button
-        test="explore-bottom-btn"
-        src={ exploreIcon }
-        onClick={ () => history.push('/explore') }
-      />
-      <Button
-        test="food-bottom-btn"
-        src={ mealIcon }
-        onClick={ () => history.push('/foods') }
-      />
+      <Link
+        to="/drinks"
+      >
+        <img
+          data-testid="drinks-bottom-btn"
+          src={ drinkIcon }
+          alt="drinks-bottom-btn"
+        />
+      </Link>
+      <Link
+        to="/explore"
+      >
+        <img
+          data-testid="explore-bottom-btn"
+          src={ exploreIcon }
+          alt="drinks-bottom-btn"
+        />
+      </Link>
+      <Link
+        to="/foods"
+      >
+        <img
+          data-testid="food-bottom-btn"
+          src={ mealIcon }
+          alt="drinks-bottom-btn"
+        />
+      </Link>
     </footer>);
 }
