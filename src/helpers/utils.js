@@ -1,11 +1,12 @@
-const getDoneRecipes = (filterType) => {
-  const doneRecipes = localStorage.getItem(JSON.parse('doneRecipes'));
-  switch (doneRecipes) {
-  case Array.isArray(doneRecipes) && doneRecipes.length > 0:
-    return doneRecipes.filter(({ type }) => type === filterType);
-  default:
-    return [];
-  }
-};
+export const getDoneRecipes = () => JSON.parse(localStorage.getItem('doneRecipes'));
 
-export default getDoneRecipes;
+export const filterDoneRecipes = (filterType) => {
+  const doneRecipes = getDoneRecipes();
+  if (doneRecipes) {
+    if (filterType === 'all') {
+      return doneRecipes;
+    }
+    return doneRecipes.filter(({ type }) => type === filterType);
+  }
+  return [];
+};
