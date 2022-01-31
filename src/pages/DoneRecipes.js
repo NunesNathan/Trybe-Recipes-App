@@ -61,9 +61,9 @@ export default function DoneRecipes() {
                 />);
             })}
           </ul>)}
+        {toast
+          && <LinkCopiedToast />}
       </main>
-      {toast
-        && <LinkCopiedToast />}
     </>
   );
 }

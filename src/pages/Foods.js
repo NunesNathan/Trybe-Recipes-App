@@ -9,7 +9,7 @@ export default function Foods() {
   const history = useHistory();
 
   return (
-    <div>
+    <>
       <Header title="Foods" search />
       <main>
         { foods !== null ? (
@@ -27,6 +27,6 @@ export default function Foods() {
           ) : null
         }
       </main>
-    </div>
+    </>
   );
 }

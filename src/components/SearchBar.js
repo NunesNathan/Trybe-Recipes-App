@@ -11,6 +11,7 @@ import {
   searchCocktailByIngredient,
   searchCocktailByName,
 } from '../server/apiCocktail';
+import Button from './Button';
 
 const INGREDIENT = 'ingredient';
 const NAME = 'name';
@@ -91,59 +92,63 @@ const SearchBar = () => {
   };
 
   return (
-    <form>
+    <form className="form-group d-flex flex-column">
       <input
         type="text"
         name="search"
+        className="form-control"
         value={ search }
         placeholder="Digite sua busca"
         onChange={ handleForm }
         data-testid="search-input"
       />
+      <div className="align-self-center d-flex flex-row w-75 justify-content-around">
+        <label htmlFor={ INGREDIENT }>
+          Ingrendiente:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ INGREDIENT }
+            value={ INGREDIENT }
+            checked={ rbSearch === INGREDIENT }
+            onChange={ handleForm }
+            data-testid="ingredient-search-radio"
+          />
+        </label>
 
-      <label htmlFor={ INGREDIENT }>
-        Ingrendiente:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ INGREDIENT }
-          checked={ rbSearch === INGREDIENT }
-          onChange={ handleForm }
-          data-testid="ingredient-search-radio"
-        />
-      </label>
+        <label htmlFor={ NAME }>
+          Nome:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ NAME }
+            value={ NAME }
+            checked={ rbSearch === NAME }
+            onChange={ handleForm }
+            data-testid="name-search-radio"
+          />
+        </label>
 
-      <label htmlFor={ NAME }>
-        Nome:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ NAME }
-          checked={ rbSearch === NAME }
-          onChange={ handleForm }
-          data-testid="name-search-radio"
-        />
-      </label>
+        <label htmlFor={ FIRSTLETTER }>
+          Primeira letra:
+          <input
+            type="radio"
+            name="rbSearch"
+            id={ FIRSTLETTER }
+            value={ FIRSTLETTER }
+            checked={ rbSearch === FIRSTLETTER }
+            onChange={ handleForm }
+            data-testid="first-letter-search-radio"
+          />
+        </label>
+      </div>
 
-      <label htmlFor={ FIRSTLETTER }>
-        Primeira letra:
-        <input
-          type="radio"
-          name="rbSearch"
-          value={ FIRSTLETTER }
-          checked={ rbSearch === FIRSTLETTER }
-          onChange={ handleForm }
-          data-testid="first-letter-search-radio"
-        />
-      </label>
-
-      <button
-        type="button"
+      <Button
+        text="Search"
+        className="submit"
         data-testid="exec-search-btn"
         onClick={ selectLocation }
-      >
-        Search
-      </button>
+      />
     </form>
   );
 };

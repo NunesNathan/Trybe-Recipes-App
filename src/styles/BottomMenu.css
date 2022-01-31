@@ -1,7 +1,14 @@
+main {
+  margin-bottom: 70px;
+}
+
 footer {
+  background-color: #43271c;
   bottom: 0;
   height: 50px;
   left: 0;
+  margin-bottom: 3px;
+  padding: 1px 0;
   position: fixed;
   width: 100%;
 }
@@ -9,4 +16,9 @@ footer {
 footer a img {
   height: 100%;
   width: 33.3%;
+}
+
+footer a :is( :hover, :focus ) {
+  background-color: #72402c58;
+  transition: 1.5s;
 }

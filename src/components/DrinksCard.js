@@ -1,27 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import shareIcon from '../images/shareIcon.svg';
 import ImageButton from './ImageButton';
+import CustomizedLink from './CustomizedLink';
 
 export default function DrinksCard({ recipe, index: i, showToast }) {
   return (
     <li>
-      <Link
-        to={ `/drinks/${recipe.id}` }
-      >
-        <img
-          data-testid={ `${i}-horizontal-image` }
-          src={ recipe.image }
-          alt={ `${recipe.name}` }
-        />
-      </Link>
+      <CustomizedLink
+        path={ `/drinks/${recipe.id}` }
+        test={ `${i}-horizontal-image` }
+        src={ recipe.image }
+        alt={ `${recipe.name}` }
+      />
       <p data-testid={ `${i}-horizontal-top-text` }>{recipe.alcoholicOrNot}</p>
-      <Link
-        to={ `/drinks/${recipe.id}` }
-      >
-        <p data-testid={ `${i}-horizontal-name` }>{recipe.name}</p>
-      </Link>
+      <CustomizedLink
+        path={ `/drinks/${recipe.id}` }
+        son={ (
+          <p data-testid={ `${i}-horizontal-name` }>{recipe.name}</p>) }
+      />
       <p data-testid={ `${i}-horizontal-done-date` }>{recipe.doneDate}</p>
       <ImageButton
         test={ `${i}-horizontal-share-btn` }

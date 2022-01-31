@@ -1,0 +1,12 @@
+form .btn {
+  background-color: #533021;
+  color: inherit;
+  width: 50%;
+  align-self: center;
+}
+
+form .submit:is( :hover, :focus ) {
+  background-color: #43271c3f;
+  width: 60%;
+  transition: 1s;
+}

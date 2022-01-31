@@ -6,6 +6,7 @@ export default function ImageButton({ src, test, onClick, alt }) {
     <button
       data-testid={ test }
       type="button"
+      className="btn"
       onClick={ onClick }
     >
       <img src={ src } alt={ alt } />
@@ -16,5 +17,9 @@ ImageButton.propTypes = {
   src: PropTypes.string.isRequired,
   test: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  alt: PropTypes.string.isRequired,
+  alt: PropTypes.string,
+};
+
+ImageButton.defaultProps = {
+  alt: '',
 };

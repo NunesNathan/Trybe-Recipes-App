@@ -1,0 +1,8 @@
+header :is( .submit, .btn ) {
+  padding: 2px;
+}
+
+div .display-4 {
+  margin-left: auto;
+  margin-right: auto;
+}
