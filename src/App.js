@@ -14,6 +14,7 @@ import Provider from './context/Provider';
 import Profile from './pages/Profile';
 import './styles/App.css';
 import './styles/BottomMenu.css';
+import './styles/RecipeCards.css';
 import './styles/index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';

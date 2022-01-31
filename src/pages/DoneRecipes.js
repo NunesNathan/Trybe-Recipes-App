@@ -41,7 +41,7 @@ export default function DoneRecipes() {
           />
         </div>
         {doneList.length > 0 && (
-          <ul>
+          <ul className="done-recipes-list">
             {doneList.map((eachDoneRecipe, i) => {
               if (eachDoneRecipe.type === 'drink') {
                 return (
