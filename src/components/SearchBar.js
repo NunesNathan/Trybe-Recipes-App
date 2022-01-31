@@ -102,40 +102,46 @@ const SearchBar = () => {
         onChange={ handleForm }
         data-testid="search-input"
       />
-      <div className="align-self-center d-flex flex-row w-75 justify-content-around">
-        <label htmlFor={ INGREDIENT }>
+      <div
+        className="align-self-center form-check
+        d-flex flex-row justify-content-around"
+      >
+        <label className="form-check-label" htmlFor={ INGREDIENT }>
           Ingrendiente:
           <input
             type="radio"
             name="rbSearch"
             id={ INGREDIENT }
             value={ INGREDIENT }
+            className="form-check-input"
             checked={ rbSearch === INGREDIENT }
             onChange={ handleForm }
             data-testid="ingredient-search-radio"
           />
         </label>
 
-        <label htmlFor={ NAME }>
+        <label className="form-check-label" htmlFor={ NAME }>
           Nome:
           <input
             type="radio"
             name="rbSearch"
             id={ NAME }
             value={ NAME }
+            className="form-check-input"
             checked={ rbSearch === NAME }
             onChange={ handleForm }
             data-testid="name-search-radio"
           />
         </label>
 
-        <label htmlFor={ FIRSTLETTER }>
+        <label className="form-check-label" htmlFor={ FIRSTLETTER }>
           Primeira letra:
           <input
             type="radio"
             name="rbSearch"
             id={ FIRSTLETTER }
             value={ FIRSTLETTER }
+            className="form-check-input"
             checked={ rbSearch === FIRSTLETTER }
             onChange={ handleForm }
             data-testid="first-letter-search-radio"

@@ -11,20 +11,19 @@ export default function Header({ title, search }) {
   const [searchBar, setSearchbar] = useState(false);
 
   return (
-    <header>
-      <div className="d-flex flex-row w-100">
-        <ImageButton
-          src={ profileIcon }
-          test="profile-top-btn"
-          onClick={ () => history.push('/profile') }
-        />
-        <p
-          data-testid="page-title"
-          className="display-4"
-        >
-          {title}
-        </p>
-      </div>
+    <header className="d-flex flex-column">
+      <p
+        data-testid="page-title"
+        className="display-4"
+      >
+        {title}
+      </p>
+
+      <ImageButton
+        src={ profileIcon }
+        test="profile-top-btn"
+        onClick={ () => history.push('/profile') }
+      />
 
       {search
         && <ImageButton

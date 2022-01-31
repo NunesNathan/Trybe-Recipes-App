@@ -19,6 +19,7 @@ import './styles/BottomMenu.css';
 import './styles/RecipeCards.css';
 import './styles/SearchBar.css';
 import './styles/Header.css';
+import './styles/Card.css';
 import Login from './pages/Login';
 import BottomMenu from './components/BottomMenu';
 import FoodRecipes from './pages/FoodRecipes';

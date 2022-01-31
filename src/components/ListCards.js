@@ -8,7 +8,7 @@ const ListCards = (props) => {
   const { listItems, keyName, keyURLImage } = props;
 
   return (
-    <div>
+    <ul className="list">
       {listItems.map((item, index) => {
         if (index < MAX_RECIPES) {
           return (
@@ -23,7 +23,7 @@ const ListCards = (props) => {
         }
         return null;
       })}
-    </div>
+    </ul>
   );
 };
 
