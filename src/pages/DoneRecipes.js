@@ -40,7 +40,7 @@ export default function DoneRecipes() {
             onClick={ () => setDoneList(filterDoneRecipes('drink')) }
           />
         </div>
-        {doneList.length > 0 && (
+        {doneList && doneList.length > 0 && (
           <ul className="done-recipes-list">
             {doneList.map((eachDoneRecipe, i) => {
               if (eachDoneRecipe.type === 'drink') {
