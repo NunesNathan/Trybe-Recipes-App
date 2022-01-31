@@ -9,7 +9,7 @@ const Drinks = () => {
   const history = useHistory();
 
   return (
-    <div>
+    <>
       <Header title="Drinks" search />
       <main>
         {
@@ -29,7 +29,7 @@ const Drinks = () => {
           ) : null
         }
       </main>
-    </div>
+    </>
   );
 };
 

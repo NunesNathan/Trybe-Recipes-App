@@ -1,0 +1,12 @@
+.done-recipes-list {
+  list-style-type: none;
+}
+
+/* correção sugerida no slack,
+https://trybecourse.slack.com/archives/C023LSXLGG7/p1636662250318100
+aparentemente o cypress não encontrava a imagem por conta do tamanho
+*/
+
+.done-recipes-list li img {
+  width: 80px;
+}

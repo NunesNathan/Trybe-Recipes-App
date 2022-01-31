@@ -5,14 +5,19 @@ const Card = (props) => {
   const { index, item, keyName, keyURLImage } = props;
 
   return (
-    <div data-testid={ `${index}-recipe-card` }>
+    <li
+      className="list-card"
+      data-testid={ `${index}-recipe-card` }
+    >
       <img
         data-testid={ `${index}-card-img` }
         src={ item[keyURLImage] }
         alt={ item[keyName] }
       />
-      <h3 data-testid={ `${index}-card-name` }>{ item[keyName] }</h3>
-    </div>
+      <div className="card-info">
+        <p data-testid={ `${index}-card-name` }>{ item[keyName] }</p>
+      </div>
+    </li>
   );
 };
 

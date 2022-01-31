@@ -1,0 +1,9 @@
+header :is( .submit, .btn ) {
+  align-self: flex-start;
+  margin-left: 0.5vw;
+  padding: 4px;
+}
+
+div .display-4 {
+  margin-left: 3%;
+}

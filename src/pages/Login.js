@@ -18,7 +18,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <main>
       <h1>Login</h1>
       <form>
         <label htmlFor="email-login">
@@ -55,7 +55,7 @@ const Login = () => {
           Enter
         </button>
       </form>
-    </div>
+    </main>
   );
 };
 
