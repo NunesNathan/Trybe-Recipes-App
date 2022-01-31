@@ -9,7 +9,11 @@ import { searchMealById } from '../server/apiMeal';
 import RecipeIngredients from '../components/RecipeIngredients';
 import { searchCocktailById } from '../server/apiCocktail';
 import recipesContext from '../context/recipesContext';
-import { setLocalStorageFavorite } from '../server/localStorageFavorited';
+import {
+  deleteItemLocalStorageFavorite,
+  filterInLocalStorageFavorited,
+  setLocalStorageFavorite,
+} from '../server/localStorageFavorited';
 
 const copy = require('clipboard-copy');
 
@@ -41,19 +45,31 @@ const RecipesInProgress = () => {
   }, [id, pathname, recipe]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timeOutID = setTimeout(() => {
       setEnableLinkCopied(false);
     }, MAX_TIME_OUT);
+
+    return () => clearTimeout(timeOutID);
   }, [enableLinkCopied]);
+
+  // Verifica ao carregar a pagina se o item já é favoritado.
+  useEffect(() => {
+    const found = filterInLocalStorageFavorited(id, pathname);
+
+    setFavorite(found);
+  }, [id, pathname]);
 
   const shareLink = () => {
     copy(`http://localhost:3000${pathname.slice(0, pathname.indexOf('/', START_SEARCH_URL))}`);
     setEnableLinkCopied(true);
   };
 
+  // Função que favorita e desfavorita a receita.
   const favoriteRecipe = () => {
     if (favorited) {
       setFavorite(false);
+
+      deleteItemLocalStorageFavorite(id, pathname);
     } else {
       setFavorite(true);
 
@@ -92,7 +108,7 @@ const RecipesInProgress = () => {
             text="Finish Recipe"
             test="finish-recipe-btn"
             disabled={ buttonFinishRecipe }
-            onClick={ () => { history.push('/done-recipes'); console.log('aquiii'); } }
+            onClick={ () => { history.push('/done-recipes'); } }
           />
         </div>
       )}

@@ -26,20 +26,26 @@ const reduceKeys = (recipe, type) => {
   return { id, nationality, category, name, image, alcoholicOrNot };
 };
 
+const extractType = (pathname) => ((pathname.includes('foods')) ? 'food' : 'drink');
+
 export const getLocalStorageFavorite = () => {
-  const arr = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  let arr = JSON.parse(localStorage.getItem('favoriteRecipes'));
+
+  if (!arr) {
+    arr = [];
+  }
 
   return arr;
 };
 
 export const setLocalStorageFavorite = (recipe, pathname) => {
-  const type = (pathname.includes('foods')) ? 'food' : 'drink';
+  const type = extractType(pathname);
 
-  let recipeFavorited = getLocalStorage();
+  const recipeFavorited = getLocalStorageFavorite();
 
-  if (!recipeFavorited) {
-    recipeFavorited = [];
-  }
+  // if (!recipeFavorited) {
+  //   recipeFavorited = [];
+  // }
 
   const {
     id, nationality, category, name, image, alcoholicOrNot,
@@ -49,5 +55,25 @@ export const setLocalStorageFavorite = (recipe, pathname) => {
 
   const newArray = [...recipeFavorited, newObj];
 
-  localStorage.setItem('favoriteRecipes', newArray);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newArray));
+};
+
+export const deleteItemLocalStorageFavorite = (id, pathname) => {
+  const type = extractType(pathname);
+
+  const arr = getLocalStorageFavorite();
+
+  const newArray = arr.filter((item) => item.id !== id && item.type !== type);
+
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newArray));
+};
+
+export const filterInLocalStorageFavorited = (id, pathname) => {
+  const type = extractType(pathname);
+
+  const arr = getLocalStorageFavorite();
+
+  const found = arr.some((item) => item.id === id && item.type === type);
+
+  return found;
 };

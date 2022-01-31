@@ -86,7 +86,7 @@ const SearchBar = () => {
       setFoods(retornoFoods);
     } else if (pathname === '/drinks') {
       const retornoDrinks = await searchAPICocktail();
-      console.log('ola', retornoDrinks);
+
       setDrinks(retornoDrinks);
     }
   };
