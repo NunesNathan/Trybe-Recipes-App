@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import Button from './Button';
+import ImageButton from './ImageButton';
 import SearchBar from './SearchBar';
 
 export default function Header({ title, search }) {
@@ -20,10 +21,11 @@ export default function Header({ title, search }) {
       <h3 data-testid="page-title">{ title }</h3>
 
       {search
-        && <Button
+        && <ImageButton
           src={ searchIcon }
+          alt="shareIcon"
           test="search-top-btn"
-          onClick={ () => setSearchbar(() => !searchBar) }
+          onClick={ () => setSearchbar(!searchBar) }
         /> }
 
       {searchBar

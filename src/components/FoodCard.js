@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Button from './Button';
 import shareIcon from '../images/shareIcon.svg';
+import ImageButton from './ImageButton';
 
 export default function FoodCard({ recipe, index: i, showToast }) {
   return (
@@ -25,9 +25,10 @@ export default function FoodCard({ recipe, index: i, showToast }) {
         <p data-testid={ `${i}-horizontal-name` }>{recipe.name}</p>
       </Link>
       <p data-testid={ `${i}-horizontal-done-date` }>{recipe.doneDate}</p>
-      <Button
+      <ImageButton
         test={ `${i}-horizontal-share-btn` }
         src={ shareIcon }
+        alt="shareIcon"
         onClick={ () => {
           /* descoberta a existência de da propriedade
           .clipboard e do metodo .writeText em
