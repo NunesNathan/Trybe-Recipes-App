@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import shareIcon from '../images/shareIcon.svg';
 
-export default function DrinksCard({ recipe, index: i }) {
+export default function DrinksCard({ recipe, index: i, showToast }) {
   return (
     <li>
       <img
@@ -17,14 +17,23 @@ export default function DrinksCard({ recipe, index: i }) {
       <Button
         test={ `${i}-horizontal-share-btn` }
         src={ shareIcon }
-        onClick={ () => { } }
+        onClick={ () => {
+          /* descoberta a existência de da propriedade
+          .clipboard e do metodo .writeText em
+          https://www.kindacode.com/article/react-copy-to-clipboard-when-click-a-button-link/
+          */
+          navigator.clipboard.writeText(`${window.location.origin}/drinks/${recipe.id}`);
+          showToast();
+        } }
       />
     </li>);
 }
 
 DrinksCard.propTypes = {
   index: PropTypes.number.isRequired,
+  showToast: PropTypes.func.isRequired,
   recipe: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

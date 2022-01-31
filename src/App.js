@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import DoneRecipes from './pages/DoneRecipes';
@@ -16,6 +15,7 @@ import Profile from './pages/Profile';
 import './styles/App.css';
 import './styles/BottomMenu.css';
 import './styles/index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import BottomMenu from './components/BottomMenu';
 import FoodRecipes from './pages/FoodRecipes';
