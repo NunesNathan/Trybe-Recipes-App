@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 export default function ImageButton({ src, test, onClick, alt }) {
   return (
     <button
-      data-testid={ test }
       type="button"
       className="btn"
       onClick={ onClick }
     >
-      <img src={ src } alt={ alt } />
+      <img
+        src={ src }
+        alt={ alt }
+        data-testid={ test }
+      />
     </button>);
 }
 

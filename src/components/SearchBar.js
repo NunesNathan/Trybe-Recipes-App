@@ -152,7 +152,7 @@ const SearchBar = () => {
       <Button
         text="Search"
         className="submit"
-        data-testid="exec-search-btn"
+        test="exec-search-btn"
         onClick={ selectLocation }
       />
     </form>
