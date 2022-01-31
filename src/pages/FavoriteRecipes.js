@@ -38,6 +38,7 @@ export default function FavoriteRecipes() {
                 index={ i }
                 recipe={ eachDoneRecipe }
                 showToast={ () => showToast(setToast) }
+                setFavList={ setFavList }
               />))}
           </ul>)}
         {toast

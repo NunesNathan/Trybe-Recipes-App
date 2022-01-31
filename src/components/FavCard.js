@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import ImageButton from './ImageButton';
+import { unfavoriteRecipe } from '../helpers/utils';
 
-export default function FavCard({ recipe, index: i, showToast }) {
+export default function FavCard({ recipe, index: i, showToast, setFavList }) {
   const renderByType = () => {
     if (recipe.type === 'drink') {
       return recipe.alcoholicOrNot;
@@ -36,7 +37,7 @@ export default function FavCard({ recipe, index: i, showToast }) {
         test={ `${i}-horizontal-favorite-btn` }
         src={ blackHeartIcon }
         alt="blackHeartIcon"
-        onClick={ () => { } }
+        onClick={ () => setFavList(unfavoriteRecipe(recipe.id)) }
       />
       <ImageButton
         test={ `${i}-horizontal-share-btn` }
@@ -58,15 +59,14 @@ export default function FavCard({ recipe, index: i, showToast }) {
 FavCard.propTypes = {
   index: PropTypes.number.isRequired,
   showToast: PropTypes.func.isRequired,
+  setFavList: PropTypes.func.isRequired,
   recipe: PropTypes.shape({
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     nationality: PropTypes.string.isRequired,
-    doneDate: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
-    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     alcoholicOrNot: PropTypes.string.isRequired,
   }).isRequired,
 };

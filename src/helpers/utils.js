@@ -13,6 +13,13 @@ export const filterRecipes = (get, filterType) => {
   return [];
 };
 
+export const unfavoriteRecipe = (unId) => {
+  const favotires = getFavoriteRecipes();
+  const newFavorites = favotires.filter(({ id }) => id !== unId);
+  localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorites));
+  return newFavorites;
+};
+
 const toaster = 3000;
 export const showToast = (setToast) => {
   setToast(true);
