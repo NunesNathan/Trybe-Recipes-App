@@ -14,6 +14,7 @@ import {
   filterInLocalStorageFavorited,
   setLocalStorageFavorite,
 } from '../server/localStorageFavorited';
+import LinkCopiedToast from '../components/LinkCopiedToast';
 
 const copy = require('clipboard-copy');
 
@@ -87,19 +88,23 @@ const RecipesInProgress = () => {
         <div>
           <img data-testid="recipe-photo" src={ URLImage } alt={ title } />
           <h1 data-testid="recipe-title">{title}</h1>
-          <Button
-            text="S"
-            src={ shareIcon }
-            test="share-btn"
-            onClick={ shareLink }
-          />
-          <Button
-            text="F"
-            src={ favorited ? favoriteIconBlack : favoriteIconWhite }
-            test="favorite-btn"
-            onClick={ favoriteRecipe }
-          />
-          {enableLinkCopied && <span>Link copied!</span>}
+          <button type="button" onClick={ shareLink }>
+            <img
+              src={ shareIcon }
+              data-testid="share-btn"
+              alt="share-btn"
+            />
+          </button>
+
+          <button type="button" onClick={ favoriteRecipe }>
+            <img
+              src={ favorited ? favoriteIconBlack : favoriteIconWhite }
+              data-testid="favorite-btn"
+              alt="favorite-btn"
+            />
+          </button>
+
+          {enableLinkCopied && <LinkCopiedToast />}
           <p data-testid="recipe-category">{ strCategory }</p>
           <RecipeIngredients recipe={ recipe } />
           <p data-testid="instructions">{strInstructions}</p>

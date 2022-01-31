@@ -51,7 +51,7 @@ const RecipeIngredientsItem = ({ item, index }) => {
     removeInLocalStorage(id, item, key);
   };
 
-  // É sempre chamado quandoa uma mudança no checkbox;
+  // É sempre chamado quando a uma mudança no checkbox;
   const handleState = ({ target: { checked } }) => {
     if (checked) {
       setIngredientChecked((prev) => (
