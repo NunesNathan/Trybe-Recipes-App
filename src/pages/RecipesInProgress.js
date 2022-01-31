@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 import shareIcon from '../images/shareIcon.svg';
-import favoriteIcon from '../images/blackHeartIcon.svg';
+import favoriteIconBlack from '../images/blackHeartIcon.svg';
+import favoriteIconWhite from '../images/whiteHeartIcon.svg';
 import verifyRecipes from '../helpers/helpers';
 import { searchMealById } from '../server/apiMeal';
 import RecipeIngredients from '../components/RecipeIngredients';
 import { searchCocktailById } from '../server/apiCocktail';
 import recipesContext from '../context/recipesContext';
+import { setLocalStorageFavorite } from '../server/localStorageFavorited';
 
 const copy = require('clipboard-copy');
 
@@ -17,6 +19,7 @@ const MAX_TIME_OUT = 3000;
 const RecipesInProgress = () => {
   const [recipe, setRecipe] = useState({});
   const [enableLinkCopied, setEnableLinkCopied] = useState(false);
+  const [favorited, setFavorite] = useState(false);
   const { buttonFinishRecipe } = useContext(recipesContext);
   const { pathname } = useLocation();
   const { id } = useParams();
@@ -48,6 +51,16 @@ const RecipesInProgress = () => {
     setEnableLinkCopied(true);
   };
 
+  const favoriteRecipe = () => {
+    if (favorited) {
+      setFavorite(false);
+    } else {
+      setFavorite(true);
+
+      setLocalStorageFavorite(recipe, pathname);
+    }
+  };
+
   const {
     URLImage, title, strCategory, strInstructions,
   } = verifyRecipes(pathname, recipe); // Essa função retorna os mesmos nomes tanto para a API de Foods como a de Drinks já que alguns são diferentes e queremos usar o mesmo componente.
@@ -66,9 +79,9 @@ const RecipesInProgress = () => {
           />
           <Button
             text="F"
-            src={ favoriteIcon }
+            src={ favorited ? favoriteIconBlack : favoriteIconWhite }
             test="favorite-btn"
-            onClick={ () => console.log('heirrr') }
+            onClick={ favoriteRecipe }
           />
           {enableLinkCopied && <span>Link copied!</span>}
           <p data-testid="recipe-category">{ strCategory }</p>
