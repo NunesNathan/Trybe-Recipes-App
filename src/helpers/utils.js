@@ -14,7 +14,7 @@ export const filterRecipes = (get, filterType) => {
 };
 
 const toaster = 3000;
-export const showToast = () => {
+export const showToast = (setToast) => {
   setToast(true);
   const me = setTimeout(() => {
     setToast(false);
