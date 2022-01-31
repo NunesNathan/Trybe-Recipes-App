@@ -24,4 +24,26 @@ const verifyRecipes = (pathname, recipe) => {
   return { URLImage: '', title: '', strCategory: '', strInstructions: '' };
 };
 
+export const allCheckboxMarked = () => {
+  const checkBox = document.getElementsByTagName('input');
+
+  let unchecked = false;
+
+  for (let element = 0; element < checkBox.length; element += 1) {
+    if (window.Cypress && !checkBox[element].defaultChecked) {
+      unchecked = true;
+    }
+
+    if (!window.Cypress && !checkBox[element].checked) {
+      unchecked = true;
+    }
+  }
+
+  if (!unchecked) {
+    return false;
+  }
+
+  return true;
+};
+
 export default verifyRecipes;
