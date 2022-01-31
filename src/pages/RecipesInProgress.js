@@ -9,8 +9,14 @@ import RecipeIngredients from '../components/RecipeIngredients';
 import { searchCocktailById } from '../server/apiCocktail';
 import recipesContext from '../context/recipesContext';
 
+const copy = require('clipboard-copy');
+
+const START_SEARCH_URL = 8;
+const MAX_TIME_OUT = 3000;
+
 const RecipesInProgress = () => {
   const [recipe, setRecipe] = useState({});
+  const [enableLinkCopied, setEnableLinkCopied] = useState(false);
   const { buttonFinishRecipe } = useContext(recipesContext);
   const { pathname } = useLocation();
   const { id } = useParams();
@@ -31,6 +37,17 @@ const RecipesInProgress = () => {
     }
   }, [id, pathname, recipe]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setEnableLinkCopied(false);
+    }, MAX_TIME_OUT);
+  }, [enableLinkCopied]);
+
+  const shareLink = () => {
+    copy(`http://localhost:3000${pathname.slice(0, pathname.indexOf('/', START_SEARCH_URL))}`);
+    setEnableLinkCopied(true);
+  };
+
   const {
     URLImage, title, strCategory, strInstructions,
   } = verifyRecipes(pathname, recipe); // Essa função retorna os mesmos nomes tanto para a API de Foods como a de Drinks já que alguns são diferentes e queremos usar o mesmo componente.
@@ -45,7 +62,7 @@ const RecipesInProgress = () => {
             text="S"
             src={ shareIcon }
             test="share-btn"
-            onClick={ () => console.log('heiii') }
+            onClick={ shareLink }
           />
           <Button
             text="F"
@@ -53,6 +70,7 @@ const RecipesInProgress = () => {
             test="favorite-btn"
             onClick={ () => console.log('heirrr') }
           />
+          {enableLinkCopied && <span>Link copied!</span>}
           <p data-testid="recipe-category">{ strCategory }</p>
           <RecipeIngredients recipe={ recipe } />
           <p data-testid="instructions">{strInstructions}</p>
