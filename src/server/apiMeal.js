@@ -49,3 +49,16 @@ export const searchMealById = async (id) => {
     return null;
   }
 };
+
+export const searchMealRandom = async () => {
+  const URL = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.meals[0];
+  } catch {
+    return null;
+  }
+};
