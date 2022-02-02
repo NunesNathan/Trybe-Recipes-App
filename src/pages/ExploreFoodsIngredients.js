@@ -26,6 +26,7 @@ export default function ExploreFoodsIngredients() {
         keyURLImage="image"
         testCard="ingredient-card"
         linked
+        pathname="/foods"
       />}
     </main>
   );

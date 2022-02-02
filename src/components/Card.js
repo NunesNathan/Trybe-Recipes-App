@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-  const { index, item, keyName, keyURLImage, testCard, linked } = props;
-  const { pathname } = useLocation();
+  const { index, item, keyName, keyURLImage, testCard, linked, pathname, idName } = props;
 
   const listItem = () => (
     <li
@@ -22,13 +21,13 @@ const Card = (props) => {
     </li>
   );
 
-  const returnPath = () => (pathname.includes('foods') ? '/foods' : '/drinks');
+  const path = idName ? `${pathname}/${item[idName]}` : pathname;
 
   return (
     linked ? (
       <Link
         to={ {
-          pathname: returnPath(),
+          pathname: path,
           state: { keyName: item[keyName] },
         } }
       >
@@ -48,11 +47,15 @@ Card.propTypes = {
   keyURLImage: PropTypes.string.isRequired,
   testCard: PropTypes.string,
   linked: PropTypes.bool,
+  pathname: PropTypes.string,
+  idName: PropTypes.string,
 };
 
 Card.defaultProps = {
   testCard: 'recipe-card',
   linked: false,
+  pathname: '',
+  idName: '',
 };
 
 export default Card;

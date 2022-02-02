@@ -5,7 +5,7 @@ import Card from './Card';
 const MAX_RECIPES = 12;
 
 const ListCards = (props) => {
-  const { listItems, keyName, keyURLImage, testCard, linked } = props;
+  const { listItems, keyName, keyURLImage, testCard, linked, pathname, idName } = props;
 
   return (
     <ul className="list">
@@ -20,6 +20,8 @@ const ListCards = (props) => {
               keyURLImage={ keyURLImage }
               testCard={ testCard }
               linked={ linked }
+              pathname={ pathname }
+              idName={ idName }
             />
           );
         }
@@ -36,6 +38,8 @@ ListCards.propTypes = {
 ListCards.defaultProps = {
   testCard: undefined,
   linked: false,
+  pathname: '',
+  idName: '',
 };
 
 export default ListCards;
