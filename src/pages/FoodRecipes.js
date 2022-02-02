@@ -39,6 +39,7 @@ export default function FoodRecipes() {
       ? (
         <main>
           <img
+            className="recipe-img"
             data-testid="recipe-photo"
             alt={ recipe.strMeal }
             src={ recipe.strMealThumb }
@@ -82,6 +83,7 @@ export default function FoodRecipes() {
           <RecommendedCards recipes={ recommended } type="drink" />
 
           <Button
+            className="start-recipe-btn"
             text="Start Recipe"
             test="start-recipe-btn"
             onClick={ () => {} }

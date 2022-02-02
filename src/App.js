@@ -20,6 +20,7 @@ import Profile from './pages/Profile';
 import './styles/App.css';
 import './styles/BottomMenu.css';
 import './styles/Card.css';
+import './styles/FoodAndDrinkRecipe.css';
 import './styles/Header.css';
 import './styles/index.css';
 import './styles/RecipeCards.css';
