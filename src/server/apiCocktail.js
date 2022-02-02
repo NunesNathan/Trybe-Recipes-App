@@ -36,3 +36,42 @@ export const searchCocktailByFirstLetter = async (firstLetter) => {
     return null;
   }
 };
+
+export const searchCocktailById = async (id) => {
+  const URL = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks[0];
+  } catch {
+    return null;
+  }
+};
+
+export const searchCocktailRandom = async () => {
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks[0];
+  } catch {
+    return null;
+  }
+};
+
+export const searchCocktailIngredientsList = async () => {
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks;
+  } catch {
+    return null;
+  }
+};

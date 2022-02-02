@@ -1,12 +1,28 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import ListCards from '../components/ListCards';
 import recipesContext from '../context/recipesContext';
+import { searchCocktailByIngredient } from '../server/apiCocktail';
 
 const Drinks = () => {
   const { drinks } = useContext(recipesContext);
+  const { setDrinks } = useContext(recipesContext);
   const history = useHistory();
+  const location = useLocation();
+
+  const searchAPI = useCallback(async () => {
+    if (location.state) {
+      const { keyName } = location.state;
+
+      const data = await searchCocktailByIngredient(keyName);
+      await setDrinks(data);
+    }
+  }, [location.state, setDrinks]);
+
+  useEffect(() => {
+    searchAPI();
+  }, [searchAPI]);
 
   return (
     <>
