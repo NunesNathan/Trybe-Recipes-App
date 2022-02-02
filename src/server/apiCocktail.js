@@ -62,3 +62,16 @@ export const searchCocktailRandom = async () => {
     return null;
   }
 };
+
+export const searchCocktailIngredientsList = async () => {
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks;
+  } catch {
+    return null;
+  }
+};
