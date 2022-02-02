@@ -1,7 +1,11 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import BottomMenu from './components/BottomMenu';
+import Provider from './context/Provider';
 import DoneRecipes from './pages/DoneRecipes';
 import Drinks from './pages/Drinks';
+import DrinksRecipes from './pages/DrinksRecipes';
 import Explore from './pages/Explore';
 import ExploreDrinks from './pages/ExploreDrinks';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
@@ -9,21 +13,18 @@ import ExploreFoods from './pages/ExploreFoods';
 import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
 import ExploreNationalities from './pages/ExploreNationalities';
 import FavoriteRecipes from './pages/FavoriteRecipes';
+import FoodRecipes from './pages/FoodRecipes';
 import Foods from './pages/Foods';
-import Provider from './context/Provider';
+import Login from './pages/Login';
 import Profile from './pages/Profile';
-import './styles/index.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 import './styles/BottomMenu.css';
-import './styles/RecipeCards.css';
-import './styles/SearchBar.css';
-import './styles/Header.css';
 import './styles/Card.css';
-import Login from './pages/Login';
-import BottomMenu from './components/BottomMenu';
-import FoodRecipes from './pages/FoodRecipes';
-import DrinksRecipes from './pages/DrinksRecipes';
+import './styles/Header.css';
+import './styles/index.css';
+import './styles/RecipeCards.css';
+import './styles/RecommendedCards.css';
+import './styles/SearchBar.css';
 
 function App() {
   const routes = () => (
@@ -49,13 +50,13 @@ function App() {
         <BottomMenu />
       </Route>
       <Route
-        path="/foods/{id-da-receita}"
+        path="/foods/:id"
       >
         <FoodRecipes />
       </Route>
       <Route
         exact
-        path="/drinks/{id-da-receita}"
+        path="/drinks/:id"
       >
         <DrinksRecipes />
       </Route>
