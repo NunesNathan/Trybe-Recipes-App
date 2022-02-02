@@ -107,7 +107,7 @@ const SearchBar = () => {
         d-flex flex-row justify-content-around"
       >
         <label className="form-check-label" htmlFor={ INGREDIENT }>
-          Ingrendiente:
+          Ingrediente:
           <input
             type="radio"
             name="rbSearch"

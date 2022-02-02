@@ -7,7 +7,7 @@ import RecommendedCards from '../components/RecommendedCards';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { searchCocktailById } from '../server/apiCocktail';
-import { searchMealRecommended } from '../server/apiMeal';
+import { searchMealListAll } from '../server/apiMeal';
 
 export default function DrinksRecipes() {
   const { id } = useParams();
@@ -21,7 +21,7 @@ export default function DrinksRecipes() {
   }, [id]);
 
   const fetchMeals = useCallback(async () => {
-    const data = await searchMealRecommended();
+    const data = await searchMealListAll();
     setRecommended(data);
   }, []);
 

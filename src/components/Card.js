@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-  const { index, item, keyName, keyURLImage } = props;
+  const { index, item, keyName, keyURLImage, testCard, linked, pathname, idName } = props;
 
-  return (
+  const listItem = () => (
     <li
       className="list-card"
-      data-testid={ `${index}-recipe-card` }
+      data-testid={ `${index}-${testCard}` }
     >
       <img
         data-testid={ `${index}-card-img` }
@@ -19,14 +20,42 @@ const Card = (props) => {
       </div>
     </li>
   );
+
+  const path = idName ? `${pathname}/${item[idName]}` : pathname;
+
+  return (
+    linked ? (
+      <Link
+        to={ {
+          pathname: path,
+          state: { keyName: item[keyName] },
+        } }
+      >
+        {listItem()}
+      </Link>
+    ) : listItem()
+  );
 };
 
 Card.propTypes = {
-  index: PropTypes.number,
+  index: PropTypes.number.isRequired,
   item: PropTypes.shape({
     strDrink: PropTypes.string,
     strDrinkThumb: PropTypes.string,
-  }),
-}.isRequired;
+  }).isRequired,
+  keyName: PropTypes.string.isRequired,
+  keyURLImage: PropTypes.string.isRequired,
+  testCard: PropTypes.string,
+  linked: PropTypes.bool,
+  pathname: PropTypes.string,
+  idName: PropTypes.string,
+};
+
+Card.defaultProps = {
+  testCard: 'recipe-card',
+  linked: false,
+  pathname: '',
+  idName: '',
+};
 
 export default Card;
