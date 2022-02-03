@@ -3,8 +3,8 @@
 }
 
 .start-recipe-btn {
-  position: fixed; /* não alterar faz parte do teste */
   background-color: antiquewhite;
-  color: black;
   bottom: 0; /* não alterar faz parte do teste */
+  color: black;
+  position: fixed; /* não alterar faz parte do teste */
 }
