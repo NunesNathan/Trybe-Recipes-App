@@ -52,8 +52,6 @@ export default function DrinksRecipes() {
     fetchMeals();
   }, [fetchDrinks, fetchMeals]);
 
-  console.log(recommended);
-
   // Verifica ao carregar a pagina se o item já é favoritado.
   useEffect(() => {
     const found = filterInLocalStorageFavorited(id, pathname);
