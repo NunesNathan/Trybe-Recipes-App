@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 class Button extends React.Component {
   render() {
     const { text, test, onClick, disabled, className } = this.props;
-
     return (
       <button
         data-testid={ `${test}` }

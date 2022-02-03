@@ -1,0 +1,10 @@
+.recipe-img {
+  max-width: 100vw;
+}
+
+.start-recipe-btn {
+  background-color: antiquewhite;
+  bottom: 0; /* não alterar faz parte do teste */
+  color: black;
+  position: fixed; /* não alterar faz parte do teste */
+}
