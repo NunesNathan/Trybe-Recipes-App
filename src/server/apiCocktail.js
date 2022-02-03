@@ -50,6 +50,19 @@ export const searchCocktailById = async (id) => {
   }
 };
 
+export const searchCocktailRecommended = async () => {
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks;
+  } catch {
+    return null;
+  }
+};
+
 export const searchCocktailRandom = async () => {
   const URL = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
 

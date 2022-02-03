@@ -1,0 +1,11 @@
+.carousel {
+  max-width: 90vw;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+}
+
+.carousel-item-img {
+  width: 160px;
+}
