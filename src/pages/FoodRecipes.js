@@ -80,7 +80,7 @@ export default function FoodRecipes() {
   };
 
   return (
-    (Object.keys(recipe).length > 0)
+    (recipe && Object.keys(recipe).length > 0)
       ? (
         <main>
           <img
