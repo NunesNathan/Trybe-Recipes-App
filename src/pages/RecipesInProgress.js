@@ -70,7 +70,7 @@ const RecipesInProgress = () => {
     if (favorited) {
       setFavorite(false);
 
-      deleteItemLocalStorageFavorite(id, pathname);
+      deleteItemLocalStorageFavorite(id);
     } else {
       setFavorite(true);
 

@@ -1,19 +1,41 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import DetailsIngred from '../components/DetailsIngred';
 import ImageButton from '../components/ImageButton';
+import LinkCopiedToast from '../components/LinkCopiedToast';
 import RecommendedCards from '../components/RecommendedCards';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { searchCocktailRecommended } from '../server/apiCocktail';
 import { searchMealById } from '../server/apiMeal';
+import {
+  deleteItemLocalStorageFavorite,
+  filterInLocalStorageFavorited,
+  setLocalStorageFavorite,
+} from '../server/localStorageFavorited';
+
+const copy = require('clipboard-copy');
+
+const MAX_TIME_OUT = 3000;
 
 export default function FoodRecipes() {
   const { id } = useParams();
+  const { pathname } = useLocation();
 
   const [recipe, setRecipe] = useState({});
   const [recommended, setRecommended] = useState([]);
+  const [enableLinkCopied, setEnableLinkCopied] = useState(false);
+  const [favorited, setFavorite] = useState(false);
+
+  useEffect(() => {
+    const timeOutID = setTimeout(() => {
+      setEnableLinkCopied(false);
+    }, MAX_TIME_OUT);
+
+    return () => clearTimeout(timeOutID);
+  }, [enableLinkCopied]);
 
   const fetchMeals = useCallback(async () => {
     const data = await searchMealById(id);
@@ -32,7 +54,30 @@ export default function FoodRecipes() {
 
   const URLEmbed = (url) => url.replace('watch?v=', 'embed/');
 
-  console.log(recommended);
+  // Verifica ao carregar a pagina se o item já é favoritado.
+  useEffect(() => {
+    const found = filterInLocalStorageFavorited(id, pathname);
+
+    setFavorite(found);
+  }, [id, pathname]);
+
+  // Função que favorita e desfavorita a receita.
+  const favoriteRecipe = () => {
+    if (favorited) {
+      setFavorite(false);
+
+      deleteItemLocalStorageFavorite(id);
+    } else {
+      setFavorite(true);
+
+      setLocalStorageFavorite(recipe, pathname);
+    }
+  };
+
+  const shareLink = () => {
+    copy(`http://localhost:3000${pathname}`);
+    setEnableLinkCopied(true);
+  };
 
   return (
     (Object.keys(recipe).length > 0)
@@ -51,14 +96,16 @@ export default function FoodRecipes() {
             src={ shareIcon }
             alt="shareIcon"
             test="share-btn"
-            onClick={ () => {} }
+            onClick={ shareLink }
           />
           <ImageButton
-            src={ whiteHeartIcon }
+            src={ favorited ? blackHeartIcon : whiteHeartIcon }
             alt="favoriteIcon"
             test="favorite-btn"
-            onClick={ () => {} }
+            onClick={ favoriteRecipe }
           />
+
+          {enableLinkCopied && <LinkCopiedToast />}
 
           <h4 data-testid="recipe-category">{ recipe.strCategory }</h4>
 

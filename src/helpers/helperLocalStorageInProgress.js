@@ -24,7 +24,7 @@ export const filterInLocalStorage = (id, item, key) => {
   const objLocalStorage = getLocalStorage();
   let itemExists = false;
 
-  if (objLocalStorage && objLocalStorage[key]) {
+  if (objLocalStorage && objLocalStorage[key] && objLocalStorage[key][id]) {
     itemExists = objLocalStorage[key][id].some((value) => value === item);
   }
 
