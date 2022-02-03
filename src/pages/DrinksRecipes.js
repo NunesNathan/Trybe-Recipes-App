@@ -1,19 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import DetailsIngred from '../components/DetailsIngred';
 import ImageButton from '../components/ImageButton';
+import LinkCopiedToast from '../components/LinkCopiedToast';
 import RecommendedCards from '../components/RecommendedCards';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import { searchCocktailById } from '../server/apiCocktail';
 import { searchMealListAll } from '../server/apiMeal';
 
+const copy = require('clipboard-copy');
+
+const MAX_TIME_OUT = 3000;
+
 export default function DrinksRecipes() {
   const { id } = useParams();
+  const { pathname } = useLocation();
 
   const [recipe, setRecipe] = useState({});
   const [recommended, setRecommended] = useState([]);
+  const [enableLinkCopied, setEnableLinkCopied] = useState(false);
+
+  useEffect(() => {
+    const timeOutID = setTimeout(() => {
+      setEnableLinkCopied(false);
+    }, MAX_TIME_OUT);
+
+    return () => clearTimeout(timeOutID);
+  }, [enableLinkCopied]);
 
   const fetchDrinks = useCallback(async () => {
     const data = await searchCocktailById(id);
@@ -31,6 +46,12 @@ export default function DrinksRecipes() {
   }, [fetchDrinks, fetchMeals]);
 
   console.log(recommended);
+
+  const shareLink = () => {
+    copy(`http://localhost:3000${pathname}`);
+    setEnableLinkCopied(true);
+  };
+
   return (
     (Object.keys(recipe).length > 0)
       ? (
@@ -48,7 +69,7 @@ export default function DrinksRecipes() {
             src={ shareIcon }
             alt="shareIcon"
             test="share-btn"
-            onClick={ () => {} }
+            onClick={ shareLink }
           />
           <ImageButton
             src={ whiteHeartIcon }
@@ -56,6 +77,8 @@ export default function DrinksRecipes() {
             test="favorite-btn"
             onClick={ () => {} }
           />
+
+          {enableLinkCopied && <LinkCopiedToast />}
 
           <h4 data-testid="recipe-category">{ recipe.strAlcoholic }</h4>
 
