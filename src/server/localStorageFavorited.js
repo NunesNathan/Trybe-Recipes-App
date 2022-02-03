@@ -58,12 +58,10 @@ export const setLocalStorageFavorite = (recipe, pathname) => {
   localStorage.setItem('favoriteRecipes', JSON.stringify(newArray));
 };
 
-export const deleteItemLocalStorageFavorite = (id, pathname) => {
-  const type = extractType(pathname);
-
+export const deleteItemLocalStorageFavorite = (id) => {
   const arr = getLocalStorageFavorite();
 
-  const newArray = arr.filter((item) => item.id !== id && item.type !== type);
+  const newArray = arr.filter((item) => item.id !== id);
 
   localStorage.setItem('favoriteRecipes', JSON.stringify(newArray));
 };

@@ -7,8 +7,14 @@ import LinkCopiedToast from '../components/LinkCopiedToast';
 import RecommendedCards from '../components/RecommendedCards';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { searchCocktailById } from '../server/apiCocktail';
 import { searchMealListAll } from '../server/apiMeal';
+import {
+  deleteItemLocalStorageFavorite,
+  filterInLocalStorageFavorited,
+  setLocalStorageFavorite,
+} from '../server/localStorageFavorited';
 
 const copy = require('clipboard-copy');
 
@@ -21,6 +27,7 @@ export default function DrinksRecipes() {
   const [recipe, setRecipe] = useState({});
   const [recommended, setRecommended] = useState([]);
   const [enableLinkCopied, setEnableLinkCopied] = useState(false);
+  const [favorited, setFavorite] = useState(false);
 
   useEffect(() => {
     const timeOutID = setTimeout(() => {
@@ -47,6 +54,26 @@ export default function DrinksRecipes() {
 
   console.log(recommended);
 
+  // Verifica ao carregar a pagina se o item já é favoritado.
+  useEffect(() => {
+    const found = filterInLocalStorageFavorited(id, pathname);
+
+    setFavorite(found);
+  }, [id, pathname]);
+
+  // Função que favorita e desfavorita a receita.
+  const favoriteRecipe = () => {
+    if (favorited) {
+      setFavorite(false);
+
+      deleteItemLocalStorageFavorite(id);
+    } else {
+      setFavorite(true);
+
+      setLocalStorageFavorite(recipe, pathname);
+    }
+  };
+
   const shareLink = () => {
     copy(`http://localhost:3000${pathname}`);
     setEnableLinkCopied(true);
@@ -72,10 +99,10 @@ export default function DrinksRecipes() {
             onClick={ shareLink }
           />
           <ImageButton
-            src={ whiteHeartIcon }
+            src={ favorited ? blackHeartIcon : whiteHeartIcon }
             alt="favoriteIcon"
             test="favorite-btn"
-            onClick={ () => {} }
+            onClick={ favoriteRecipe }
           />
 
           {enableLinkCopied && <LinkCopiedToast />}
