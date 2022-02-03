@@ -9,7 +9,7 @@ import {
 import { allCheckboxMarked } from '../helpers/helpers';
 import recipesContext from '../context/recipesContext';
 
-const RecipeIngredientsItem = ({ item, index }) => {
+const RecipeIngredientsItem = ({ item, measure, index }) => {
   const [ingredientChecked, setIngredientChecked] = useState({
     checked: false,
     doneItem: '',
@@ -79,7 +79,6 @@ const RecipeIngredientsItem = ({ item, index }) => {
         <input
           type="checkbox"
           name="ingrediente"
-          // checked={ checked } // Verificar esse erro com os meninos
           defaultChecked={ checked }
           onChange={ handleState }
         />)
@@ -87,12 +86,11 @@ const RecipeIngredientsItem = ({ item, index }) => {
           <input
             type="checkbox"
             name="ingrediente"
-            checked={ checked } // Verificar esse erro com os meninos
-            // defaultChecked={ checked }
+            checked={ checked }
             onChange={ handleState }
           />
         )}
-      {item}
+      {`${item} - ${measure}`}
     </li>
   );
 };
