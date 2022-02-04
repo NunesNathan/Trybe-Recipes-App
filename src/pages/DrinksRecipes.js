@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import Button from '../components/Button';
 import DetailsIngred from '../components/DetailsIngred';
 import ImageButton from '../components/ImageButton';
 import LinkCopiedToast from '../components/LinkCopiedToast';
 import RecommendedCards from '../components/RecommendedCards';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
 import { searchCocktailById } from '../server/apiCocktail';
 import { searchMealListAll } from '../server/apiMeal';
 import {
@@ -15,19 +15,24 @@ import {
   filterInLocalStorageFavorited,
   setLocalStorageFavorite,
 } from '../server/localStorageFavorited';
+import { filterInLocalStorageInProgress } from '../server/localStorageinProgressRecipes';
 
 const copy = require('clipboard-copy');
 
 const MAX_TIME_OUT = 3000;
+const CONTINUE = 'Continue Recipe';
+const START = 'Start Recipe';
 
 export default function DrinksRecipes() {
   const { id } = useParams();
   const { pathname } = useLocation();
+  const history = useHistory();
 
   const [recipe, setRecipe] = useState({});
   const [recommended, setRecommended] = useState([]);
   const [enableLinkCopied, setEnableLinkCopied] = useState(false);
   const [favorited, setFavorite] = useState(false);
+  const [inProgress, setInProgress] = useState(false);
 
   useEffect(() => {
     const timeOutID = setTimeout(() => {
@@ -57,6 +62,9 @@ export default function DrinksRecipes() {
     const found = filterInLocalStorageFavorited(id, pathname);
 
     setFavorite(found);
+
+    const localInProgress = filterInLocalStorageInProgress(id, pathname);
+    setInProgress(localInProgress);
   }, [id, pathname]);
 
   // Função que favorita e desfavorita a receita.
@@ -118,9 +126,9 @@ export default function DrinksRecipes() {
 
           <Button
             className="start-recipe-btn"
-            text="Start Recipe"
+            text={ inProgress ? CONTINUE : START }
             test="start-recipe-btn"
-            onClick={ () => {} }
+            onClick={ () => history.push(`/drinks/${id}/in-progress`) }
             disabled={ false }
           />
 

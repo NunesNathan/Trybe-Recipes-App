@@ -5,7 +5,8 @@ export const getLocalStorage = (key = '') => {
     return result;
   }
 
-  return result[key];
+  // return result[key] || {};
+  return result ? result[key] : {};
 };
 
 /* ID: id da receita, ingredient: ingrediente a ser adicionado, key: meals/cocktails */
@@ -51,4 +52,16 @@ export const removeItemLocalStorage = (id, ingredient, key) => {
   };
 
   localStorage.setItem('inProgressRecipes', JSON.stringify(newObj));
+};
+
+const extractType = (pathname) => ((pathname.includes('foods')) ? 'meals' : 'cocktails');
+
+export const filterInLocalStorageInProgress = (id, pathname) => {
+  const type = extractType(pathname);
+
+  const local = getLocalStorage(type);
+
+  const found = Object.keys(local).includes(id);
+
+  return found;
 };
