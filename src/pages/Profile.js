@@ -10,7 +10,7 @@ export default function Profile() {
   const history = useHistory();
 
   useEffect(() => {
-    const user = getLocalStorageProfile();
+    const user = getLocalStorageProfile() || '';
 
     setProfile(user.email);
   }, []);
