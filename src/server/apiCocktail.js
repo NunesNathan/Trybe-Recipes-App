@@ -96,6 +96,7 @@ export const searchCocktailCategories = async () => {
     const response = await fetch(URL);
     const data = await response.json();
 
+    data.drinks[5] = { strCategory: 'All' };
     return data.drinks;
   } catch {
     return null;

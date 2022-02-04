@@ -122,6 +122,7 @@ export const searchMealCategories = async () => {
     const response = await fetch(URL);
     const data = await response.json();
 
+    data.meals[5] = { strCategory: 'All' };
     return data.meals;
   } catch {
     return null;

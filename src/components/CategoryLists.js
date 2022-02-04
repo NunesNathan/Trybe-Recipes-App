@@ -1,16 +1,66 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import recipesContext from '../context/recipesContext';
+import { searchCocktailRecommended } from '../server/apiCocktail';
+import { searchMealListAll } from '../server/apiMeal';
 
-const CategoryList = ({ categories, maxFilter, apiByCatgory, type }) => {
+const CategoryList = ({
+  categories, maxFilter, apiByCatgory,
+  type, setHaventFilteredByCategory, setMaximumFilter,
+}) => {
+  const five = 5;
+  const six = 6;
   const { setFoods, setDrinks } = useContext(recipesContext);
+  const [currentFilter, setCurrentFilter] = useState('');
 
   const searchByCategory = (category) => {
     if (type === 'foods') {
-      apiByCatgory(category)
-        .then((data) => setFoods(data));
-    } else {
-      apiByCatgory(category)
-        .then((data) => setDrinks(data));
+      if (currentFilter === category) {
+        searchMealListAll().then((data) => {
+          setHaventFilteredByCategory(true);
+          setMaximumFilter(five);
+          setCurrentFilter('');
+          setFoods(data);
+        });
+      } else if (category === 'All') {
+        searchMealListAll().then((data) => {
+          setHaventFilteredByCategory(false);
+          setMaximumFilter(five);
+          setCurrentFilter('');
+          setFoods(data);
+        });
+      } else {
+        apiByCatgory(category)
+          .then((data) => {
+            setHaventFilteredByCategory(false);
+            setCurrentFilter(category);
+            setMaximumFilter(six);
+            setFoods(data);
+          });
+      }
+    } else if (type === 'drinks') {
+      if (currentFilter === category) {
+        searchCocktailRecommended().then((data) => {
+          setHaventFilteredByCategory(true);
+          setMaximumFilter(five);
+          setCurrentFilter('');
+          setDrinks(data);
+        });
+      } else if (category === 'All') {
+        searchCocktailRecommended().then((data) => {
+          setHaventFilteredByCategory(false);
+          setMaximumFilter(five);
+          setCurrentFilter('');
+          setDrinks(data);
+        });
+      } else {
+        apiByCatgory(category)
+          .then((data) => {
+            setHaventFilteredByCategory(false);
+            setCurrentFilter(category);
+            setMaximumFilter(six);
+            setDrinks(data);
+          });
+      }
     }
   };
 
