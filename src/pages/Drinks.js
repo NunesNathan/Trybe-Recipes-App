@@ -1,13 +1,16 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
+import CategoryList from '../components/CategoryLists';
 import Header from '../components/Header';
 import ListCards from '../components/ListCards';
 import recipesContext from '../context/recipesContext';
-import { searchCocktailByIngredient, searchCocktailByName } from '../server/apiCocktail';
+import { searchCocktailByCategory, searchCocktailByIngredient,
+  searchCocktailByName, searchCocktailCategories } from '../server/apiCocktail';
 
 const Drinks = () => {
   const { drinks, setDrinks } = useContext(recipesContext);
   // const { setDrinks } = useContext(recipesContext);
+  const [categories, setCategories] = useState([]);
   const history = useHistory();
   const location = useLocation();
 
@@ -29,10 +32,22 @@ const Drinks = () => {
       .then((data) => setDrinks(data));
   }, [setDrinks]);
 
+  useEffect(() => {
+    searchCocktailCategories()
+      .then((data) => setCategories(data));
+  }, []);
+
   return (
     <>
       <Header title="Drinks" search />
       <main>
+        { categories && <CategoryList
+          categories={ categories }
+          maxFilter={ 5 }
+          apiByCatgory={ searchCocktailByCategory }
+          type="drinks"
+        />}
+
         {
           drinks !== null ? (
             drinks.length === 1 && history.push(`/drinks/${drinks[0].idDrink}`)

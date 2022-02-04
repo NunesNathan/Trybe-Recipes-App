@@ -88,3 +88,29 @@ export const searchCocktailIngredientsList = async () => {
     return null;
   }
 };
+
+export const searchCocktailCategories = async () => {
+  const URL = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks;
+  } catch {
+    return null;
+  }
+};
+
+export const searchCocktailByCategory = async (category) => {
+  const URL = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
+
+  try {
+    const response = await fetch(URL);
+    const data = await response.json();
+
+    return data.drinks;
+  } catch {
+    return null;
+  }
+};
