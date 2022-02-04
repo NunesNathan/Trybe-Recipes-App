@@ -3,11 +3,11 @@ import { useLocation, useHistory } from 'react-router-dom';
 import Header from '../components/Header';
 import ListCards from '../components/ListCards';
 import recipesContext from '../context/recipesContext';
-import { searchCocktailByIngredient } from '../server/apiCocktail';
+import { searchCocktailByIngredient, searchCocktailByName } from '../server/apiCocktail';
 
 const Drinks = () => {
-  const { drinks } = useContext(recipesContext);
-  const { setDrinks } = useContext(recipesContext);
+  const { drinks, setDrinks } = useContext(recipesContext);
+  // const { setDrinks } = useContext(recipesContext);
   const history = useHistory();
   const location = useLocation();
 
@@ -23,6 +23,11 @@ const Drinks = () => {
   useEffect(() => {
     searchAPI();
   }, [searchAPI]);
+
+  useEffect(() => {
+    searchCocktailByName('')
+      .then((data) => setDrinks(data));
+  }, [setDrinks]);
 
   return (
     <>

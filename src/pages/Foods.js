@@ -3,11 +3,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
 import ListCards from '../components/ListCards';
 import recipesContext from '../context/recipesContext';
-import { searchMealByIngredient } from '../server/apiMeal';
+import { searchMealByIngredient, searchMealListAll } from '../server/apiMeal';
 
 export default function Foods() {
-  const { foods } = useContext(recipesContext);
-  const { setFoods } = useContext(recipesContext);
+  const { foods, setFoods } = useContext(recipesContext);
+  // const { setFoods } = useContext(recipesContext);
   const history = useHistory();
   const location = useLocation();
 
@@ -22,6 +22,11 @@ export default function Foods() {
   useEffect(() => {
     searchAPI();
   }, [searchAPI]);
+
+  useEffect(() => {
+    searchMealListAll()
+      .then((data) => setFoods(data));
+  }, [setFoods]);
 
   return (
     <>
