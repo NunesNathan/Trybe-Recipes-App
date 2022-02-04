@@ -1,11 +1,20 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 export default function RecommendedCards({ recipes, type }) {
   const MAX_RECIPES = 6;
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 0 },
+      items: 2,
+    },
+  };
+
   return (
-    <section className="carousel">
+    <Carousel responsive={ responsive }>
       {recipes.map((recipe, index) => {
         if (index < MAX_RECIPES && type === 'meal') {
           return (
@@ -17,10 +26,8 @@ export default function RecommendedCards({ recipes, type }) {
               />
               <p>{ recipe.strCategory }</p>
               <h3 data-testid={ `${index}-recomendation-title` }>{ recipe.strMeal }</h3>
-            </div>
-          );
+            </div>);
         }
-
         if (index < MAX_RECIPES && type === 'drink') {
           return (
             <div key={ index } data-testid={ `${index}-recomendation-card` }>
@@ -30,15 +37,16 @@ export default function RecommendedCards({ recipes, type }) {
                 className="carousel-item-img"
               />
               <p>{ recipe.strAlcoholic }</p>
-              <h3 data-testid={ `${index}-recomendation-title` }>{ recipe.strDrink }</h3>
-            </div>
-          );
+              <h3
+                data-testid={ `${index}-recomendation-title` }
+              >
+                {recipe.strDrink}
+              </h3>
+            </div>);
         }
         return null;
       })}
-
-    </section>
-  );
+    </Carousel>);
 }
 
 RecommendedCards.propTypes = {
